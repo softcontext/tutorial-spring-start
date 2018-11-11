@@ -1,6 +1,6 @@
-# 부록 D. 스프링 3에서 4로 마이그레이션
+***
 
----
+# 부록 D. 스프링 3에서 4로 마이그레이션 하기
 
 Spring Legacy Project 메뉴로 만든 Spring MVC 프로젝트의 스프링 프레임워크의 버전은 3.1.1 입니다. 이것을 4.3.4으로 변경하는 방법을 실습합니다. 
 
@@ -24,7 +24,7 @@ Spring Legacy Project 메뉴로 만든 Spring MVC 프로젝트의 스프링 프�
 - jsp-api 2.2
 - junit 4.12
 
-## pom.xml
+## pom.xml 수정하기
 
 java-version을 1.6에서 1.8로 org.springframework-version 버전을 3.1.1에서 4.3.4로 변경합니다.
 
@@ -54,7 +54,9 @@ servlet-api 버전을 2.5에서 3.1.0로 변경합니다. artifactId 이름이 �
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+	xsi:schemaLocation="
+  http://java.sun.com/xml/ns/javaee 
+  http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
 	
   <!-- 생략 -->
@@ -101,7 +103,7 @@ maven-compiler-plugin 설정에서 source와 target을 1.8로 변경합니다.
 </plugin>
 ```
 
-## 프로젝트 속성
+## 프로젝트 속성 수정하기
 
 프로젝트의 `Properties`를 선택합니다. `Java Build Path`를 선택합니다. `Libraries`에서 `JavaSE-1.6`을 `JavaSE-1.8`로 변경합니다.
 
@@ -121,11 +123,13 @@ maven-compiler-plugin 설정에서 source와 target을 1.8로 변경합니다.
 
 프로젝트를 선택한 다음 마우스 오른쭉 키를 누르면 뜨는 팝업 메뉴에서 `Maven >> Update Project`를 선택해서 메이븐이 변경된 설정을 처리하도록 조치합니다.
 
-#### TEST
+## TEST
 
 모든 설정이 적용되었습니다. 프로젝트를 재 기동하여 테스트 합니다. 프로젝트명에 빨간색이 없고, Problems 탭 뷰에 에러가 없다면 스프링 3에서 4로 업그레이드하는 마이그레이션 작업이 잘 적용된 것 입니다. 프로젝트 기동 테스트 시 로그에 에러가 없어야 합니다.
 
 ## XML 설정을 자바컨피그 설정으로 변경
+
+스프링 부트는 환경설정 작업에서 XML을 사용하지 않습니다. 스프링 부트처럼 앞에서 작업한 프로젝트의 XML 환경설정 부분을 모두 없애고 대신 애노테이션 및 자바컨피그로 설정을 변경해 봅니다.
 
 #### Config.java
 
@@ -155,6 +159,8 @@ public class Config {
 }
 ```
 
+<br/>
+
 ##### context:component-scan
 
 `<context:component-scan base-package="com.example" />` 
@@ -162,6 +168,8 @@ public class Config {
 위 설정 대신 아래 애노테이션을 사용한다.
 
 `@ComponentScan("com.example.demo")`
+
+<br/>
 
 ##### InternalResourceViewResolver
 
@@ -185,6 +193,9 @@ public UrlBasedViewResolver viewResolver() {
   return viewResolver;
 }
 ```
+
+<br/>
+
 ##### mvc:annotation-driven
 
 <mvc:annotation-driven />
@@ -193,11 +204,13 @@ public UrlBasedViewResolver viewResolver() {
 
 @EnableWebMvc
 
+<br/>
+
 ##### root-context.xml, servlet-context.xml
 
-`webapp\WEB-INF\spring\root-context.xml` 파일을 삭제한다. 
-프로젝트 생성 시 root-context.xml 안에는 아무런 설정이 없다. 만약 추가한 설정이 있다면 해당 설정을 Config 클래스에 추가하자.
-`webapp\WEB-INF\spring\appServlet\servlet-context.xml` 파일을 삭제한다.
+`webapp\WEB-INF\spring\root-context.xml` 파일을 삭제한다. 프로젝트 생성 시 root-context.xml 안에는 아무런 설정이 없다. 만약 추가한 설정이 있다면 해당 설정을 Config 클래스에 추가하자. `webapp\WEB-INF\spring\appServlet\servlet-context.xml` 파일을 삭제한다.
+
+<br/>
 
 #### pom.xml
 
@@ -233,18 +246,23 @@ public class WebInit implements WebApplicationInitializer {
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 
-		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+		AnnotationConfigWebApplicationContext ctx = new 
+    AnnotationConfigWebApplicationContext();
 		ctx.register(Config.class);
 		ctx.setServletContext(servletContext);
 		
-		Dynamic servlet = servletContext.addServlet("appServlet", new DispatcherServlet(ctx));
+		Dynamic servlet = servletContext.addServlet(
+    "appServlet", new DispatcherServlet(ctx));
 		servlet.addMapping("/");
 		servlet.setLoadOnStartup(1);
-//		servlet.setInitParameter("contextConfigLocation", "/WEB-INF/appServlet-servlet.xml");
+//		servlet.setInitParameter("contextConfigLocation", 
+//		  "/WEB-INF/appServlet-servlet.xml");
 	}
 
 }
 ```
+
+<br/>
 
 ```xml
 <listener>
@@ -258,6 +276,8 @@ public class WebInit implements WebApplicationInitializer {
 WebInit implements WebApplicationInitializer
 ```
 
+<br/>
+
 ```xml
 <context-param>
   <param-name>contextConfigLocation</param-name>
@@ -268,10 +288,13 @@ WebInit implements WebApplicationInitializer
 위 설정 대신 다음 코드를 사용한다.
 
 ```java
-AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+AnnotationConfigWebApplicationContext ctx = new 
+AnnotationConfigWebApplicationContext();
 ctx.register(Config.class);
 ctx.setServletContext(servletContext);
 ```
+
+<br/>
 
 ```xml
 <servlet>
@@ -292,25 +315,27 @@ ctx.setServletContext(servletContext);
 위 설정 대신 다음 코드를 사용한다.
 
 ```java
-Dynamic servlet = servletContext.addServlet("appServlet", new DispatcherServlet(ctx));
+Dynamic servlet = servletContext.addServlet("appServlet", 
+new DispatcherServlet(ctx));
 servlet.addMapping("/");
 servlet.setLoadOnStartup(1);
-//servlet.setInitParameter("contextConfigLocation", "/WEB-INF/appServlet-servlet.xml");
+//servlet.setInitParameter("contextConfigLocation", 
+//  "/WEB-INF/appServlet-servlet.xml");
 ```
 
 XML 방식의 설정에서는 root-context.xml에 의한 컨텍스트는 부모 컨테이너가 되고 servlet-context.xml에 의한 컨텍스트는 자식 컨테이너가 되어 상속관계를 같는다. 이와 유사하게 자바컨피그로 구성하려면 AnnotationConfigWebApplicationContext 클래스가 지원하는 setParent() 메소드를 사용하면 된다.
+
+<br/>
 
 ##### web.xml
 
 `webapp\WEB-INF\web.xml` 파일을 삭제한다.
 
-#### TEST
+## TEST
 
-프로젝트를 재 기동하여 테스트 해 보자. 
+프로젝트를 재 기동하여 테스트 해 보자. 스프링 부트는 XML을 기본적으로 사용하지 않지만 개발자가 원한다면 `@ImportResource({"classpath*:context.xml"})` 애노테이션으로 사용할 수 있다.
 
-스프링 부트는 XML을 기본적으로 사용하지 않지만 개발자가 원한다면 `@ImportResource({"classpath*:context.xml"})` 애노테이션으로 사용할 수 있다.
-
-##### classpath vs classpath*
+**`classpath vs classpath* 차이점`**
 
 * classpath : 현재 프로젝트의 resource만 선택 한다.
 * classpath* : 현재 프로젝트에 관련(참조)된 모든 jar를 다 검색하여 리소스를 선택 한다.
