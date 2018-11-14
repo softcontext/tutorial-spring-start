@@ -1,8 +1,3 @@
-<style>
-body, p, li {
-   font-size: 15px;
-}
-</style>
 
 ***
 
@@ -40,7 +35,7 @@ Installer 뷰 >> Specify Location >> 사용하는 STS.exe 선택 >> Install 클�
 </dependency>
 ```
 
-***
+<br/>
 
 ## Step 1. 롬복을 사용하지 않을 때에 모습
 
