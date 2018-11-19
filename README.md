@@ -12,4 +12,6 @@
 
 이 교재를 통해서 보다 많은 분들이 스프링 프레임워크를 쉽게 익혀서 실무에 바로 쓸 수 있게 되기를 바란다.
 
-저자: `softcontext@gmail.com`
+저자: 송석원 `softcontext@gmail.com`
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.
