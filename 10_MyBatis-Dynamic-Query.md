@@ -1,4 +1,3 @@
-
 ***
 
 # 6.1. Dynamic SQL

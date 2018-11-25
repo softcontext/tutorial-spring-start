@@ -1261,7 +1261,9 @@ public class EmpDaoImplTest {
 		
 		int nowCount = dao.count();
 		
-		assertThat("한 행이 추가되었으므로 nowCount는 oldCount 보다 1이 커야 합니다.", nowCount, is(oldCount + 1));
+		assertThat(
+		  "한 행이 추가되었으므로 nowCount는 oldCount 보다 1이 커야 합니다.", 
+		  nowCount, is(oldCount + 1));
 	}
 
 	@Test
@@ -1867,9 +1869,10 @@ Project Dependencies : Web, Lombok, JDBC, MySQL
 
 #### src\main\resources\application.properties
 
-```java
+```properties
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/test_spring_jdbc?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8
+spring.datasource.url=jdbc:mysql://localhost:3306/test_spring_jdbc?createDatabaseIfNotExist=true
+#&useUnicode=true&characterEncoding=utf8
 spring.datasource.username=root
 spring.datasource.password=1111
 ```

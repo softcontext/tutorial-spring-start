@@ -51,25 +51,25 @@ SpringFramework는 20개 정도의 모듈로 기능을 제공한다. 이러한 �
 
 | GroupId | ArtifactId | Description |
 | :--- | :--- | :--- |
-| org.springframework | spring-aop | Proxy-based AOP support |
-| org.springframework | spring-aspects | AspectJ based aspects |
-| org.springframework | spring-beans | Beans support, including Groovy |
-| org.springframework | spring-context | Application context runtime, including scheduling and remoting abstractions |
-| org.springframework | spring-context-support | Support classes for integrating common third-party libraries into a Spring application context |
-| org.springframework | spring-core | Core utilities, used by many other Spring modules |
-| org.springframework | spring-expression | Spring Expression Language (SpEL) |
-| org.springframework | spring-instrument | Instrumentation agent for JVM bootstrapping |
-| org.springframework | spring-instrument-tomcat | Instrumentation agent for Tomcat |
-| org.springframework | spring-jdbc | JDBC support package, including DataSource setup and JDBC access support |
-| org.springframework | spring-jms | JMS support package, including helper classes to send/receive JMS messages |
-| org.springframework | spring-messaging | Support for messaging architectures and protocols |
-| org.springframework | spring-orm | Object/Relational Mapping, including JPA and Hibernate support |
-| org.springframework | spring-oxm | Object/XML Mapping |
-| org.springframework | spring-test | Support for unit testing and integration testing Spring components |
-| org.springframework | spring-tx | Transaction infrastructure, including DAO support and JCA integration |
-| org.springframework | spring-web | Foundational web support, including web client and web-based remoting |
-| org.springframework | spring-webmvc | HTTP-based Model-View-Controller and REST endpoints for Servlet stacks |
-| org.springframework | spring-websocket | WebSocket and SockJS infrastructure, including STOMP messaging support |
+| <sub>org.springframework</sub> | <sub>spring-aop</sub> | <sub>Proxy-based AOP support</sub> |
+| <sub>org.springframework</sub> | <sub>spring-aspects</sub> | <sub>AspectJ based aspects</sub> |
+| <sub>org.springframework</sub> | <sub>spring-beans</sub> | <sub>Beans support, including Groovy</sub> |
+| <sub>org.springframework</sub> | <sub>spring-context</sub> | <sub>Application context runtime, including scheduling and remoting abstractions</sub> |
+| <sub>org.springframework</sub> | <sub>spring-context-support</sub> | <sub>Support classes for integrating common third-party libraries into a Spring application context</sub> |
+| <sub>org.springframework</sub> | <sub>spring-core</sub> | <sub>Core utilities, used by many other Spring modules</sub> |
+| <sub>org.springframework</sub> | <sub>spring-expression</sub> | <sub>Spring Expression Language (SpEL)</sub> |
+| <sub>org.springframework</sub> | <sub>spring-instrument</sub> | <sub>Instrumentation agent for JVM bootstrapping</sub> |
+| <sub>org.springframework</sub> | <sub>spring-instrument-tomcat</sub> | <sub>Instrumentation agent for Tomcat</sub> |
+| <sub>org.springframework</sub> | <sub>spring-jdbc</sub> | <sub>JDBC support package, including DataSource setup and JDBC access support</sub> |
+| <sub>org.springframework</sub> | <sub>spring-jms</sub> | <sub>JMS support package, including helper classes to send/receive JMS messages</sub> |
+| <sub>org.springframework</sub> | <sub>spring-messaging</sub> | <sub>Support for messaging architectures and protocols</sub> |
+| <sub>org.springframework</sub> | <sub>spring-orm</sub> | <sub>Object/Relational Mapping, including JPA and Hibernate support</sub> |
+| <sub>org.springframework</sub> | <sub>spring-oxm</sub> | <sub>Object/XML Mapping</sub> |
+| <sub>org.springframework</sub> | <sub>spring-test</sub> | <sub>Support for unit testing and integration testing Spring components</sub> |
+| <sub>org.springframework</sub> | <sub>spring-tx</sub> | <sub>Transaction infrastructure, including DAO support and JCA integration</sub> |
+| <sub>org.springframework</sub> | <sub>spring-web</sub> | <sub>Foundational web support, including web client and web-based remoting</sub> |
+| <sub>org.springframework</sub> | <sub>spring-webmvc</sub> | <sub>HTTP-based Model-View-Controller and REST endpoints for Servlet stacks</sub> |
+| <sub>org.springframework</sub> | <sub>spring-websocket</sub> | <sub>WebSocket and SockJS infrastructure, including STOMP messaging support</sub> |
 
 ## 용어설명
 

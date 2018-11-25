@@ -421,7 +421,8 @@ public void testTransaction() {
 @EnableTransactionManagement
 public class AppConfig {
     @Bean
-    public PlatformTransactionManager transactionManager() throws URISyntaxException, GeneralSecurityException, ParseException, IOException {
+    public PlatformTransactionManager transactionManager() 
+    throws URISyntaxException, GeneralSecurityException, ParseException, IOException {
         return new DataSourceTransactionManager(dataSource());
     }
 }

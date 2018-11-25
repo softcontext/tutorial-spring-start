@@ -307,8 +307,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class MyLogInterceptor implements HandlerInterceptor {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(
+	HttpServletRequest request, HttpServletResponse response, Object handler)
+	throws Exception {
 		System.out.println("DispatcherServlet ==Interceptor==> Controller");
 		// 용례: 로깅, 인증(회원여부), 권한체크(접근권한 보유여부) ...
 		
@@ -320,14 +321,16 @@ public class MyLogInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public void postHandle(
+	HttpServletRequest request, HttpServletResponse response, 
+	Object handler, ModelAndView modelAndView) throws Exception {
 		System.out.println("DispatcherServlet <==Interceptor== Controller");
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
+	public void afterCompletion(
+	HttpServletRequest request, HttpServletResponse response, 
+	Object handler, Exception ex) throws Exception {
 		System.out.println("DispatcherServlet <==Interceptor== View");
 	}
 
