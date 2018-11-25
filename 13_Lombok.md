@@ -27,15 +27,13 @@ Installer 뷰 >> Specify Location >> 사용하는 STS.exe 선택 >> Install 클�
 
 #### pom.xml
 
-```java
+```xml
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
     <scope>compile</scope>
 </dependency>
 ```
-
-<br/>
 
 ## Step 1. 롬복을 사용하지 않을 때에 모습
 
@@ -185,7 +183,8 @@ public class NonLombokModelTest {
         System.out.println(model1);
         System.out.println(model1.hashCode());
 
-        NonLombokModel model2 = NonLombokModel.builder().name("Tom").age(56).address("NY").build();
+        NonLombokModel model2 = NonLombokModel.builder().name("Tom").age(56)
+          .address("NY").build();
 
         System.out.println(model2);
         System.out.println(model2.hashCode());
@@ -202,23 +201,23 @@ public class NonLombokModelTest {
 
 ## Step 2. Domain 클래스를 위한 롬복 애노테이션
 
-* @Getter: getter 메소드 코드를 제너레이트 한다.
+* `@Getter`: getter 메소드 코드를 제너레이트 한다.
 
-* @Setter: setter 메소드 코드를 제너레이트 한다.
+* `@Setter`: setter 메소드 코드를 제너레이트 한다.
 
-* @RequiredArgsConstructor: @NonNull이 설정된 멤버변수를 파라미터로 받는 생성자를 만든다.
+* `@RequiredArgsConstructor`: `@NonNull`이 설정된 멤버변수를 파라미터로 받는 생성자를 만든다.
 
-* @ToString: toString() 메소드를 재 정의 한다.
+* `@ToString`: toString() 메소드를 재 정의 한다.
 
-* @EqualsAndHashCode: hashCode(), equals() 메소드를 재 정의 한다.
+* `@EqualsAndHashCode`: hashCode(), equals() 메소드를 재 정의 한다.
 
-* @Data: 위 애노테이션들을 설정하는 대신 이 애노테이션을 사용할 수 있다. 설정 결과는 동일한다.
+* `@Data`: 위 애노테이션들을 설정하는 대신 이 애노테이션을 사용할 수 있다. 설정 결과는 동일한다.
 
-* @Builder: 새 객체를 빌더로직을 통해서 만들 수 있는 코드를 제너레이트 한다.
+* `@Builder`: 새 객체를 빌더로직을 통해서 만들 수 있는 코드를 제너레이트 한다.
 
-* @NoArgsConstructor: 디폴트 생성자 코드를 제너레이트 한다.
+* `@NoArgsConstructor`: 디폴트 생성자 코드를 제너레이트 한다.
 
-* @AllArgsConstructor: 멤버변수들 모두를 파라미터로 받는 생성자 코드를 제너레이트 한다.
+* `@AllArgsConstructor`: 멤버변수들 모두를 파라미터로 받는 생성자 코드를 제너레이트 한다.
 
 #### LombokModel.java
 
@@ -267,7 +266,8 @@ public class LombokModelTest {
         System.out.println(model1.hashCode());
 
         // @Builder : 빌더를 사용하여 새 객체를 생성한다.
-        LombokModel model2 = LombokModel.builder().name("Tom").age(56).address("NY").build();
+        LombokModel model2 = LombokModel.builder().name("Tom").age(56)
+          .address("NY").build();
 
         // @ToString
         System.out.println(model2);
@@ -285,7 +285,7 @@ public class LombokModelTest {
 }
 ```
 
-## Step 3. @Accessors
+## Step 3. `@Accessors`
 
 #### LoginResult.java
 
@@ -329,7 +329,8 @@ public class LoginResultTest {
         System.out.println(loginResult.firstName());
         System.out.println(loginResult.lastName());
 
-        // @Accessors(chain = true) : setter 메소드가 this를 리턴하여 메소드 체이닝 기법을 사용할 수 있다.
+        // @Accessors(chain = true) : setter 메소드가 this를 리턴하여 
+        // 메소드 체이닝 기법을 사용할 수 있다.
         loginResult.id("tom.cruise@actor.org").firstName("TOM").lastName("CRUISE");
 
         // @ToString(exclude = { "id" }) : 멤버변수 id는 제외한다.
@@ -339,7 +340,7 @@ public class LoginResultTest {
 }
 ```
 
-## Step 4. @Slf4j, @Cleanup, @SneakyThrows
+## Step 4. `@Slf4j`, `@Cleanup`, `@SneakyThrows`
 
 #### example.txt
 
@@ -390,8 +391,8 @@ public class CheckedExceptionExample {
         StackTraceElement[] elements = new Throwable().getStackTrace();
         log.info("Callee : {}", elements[0].getClassName() + "." + elements[0].getMethodName());
 
-        // @Cleanup("close") : InputStream 객체를 사용하고 난 후, close() 메소드가 
-        // 호출되게 만든다.
+        // @Cleanup("close") : InputStream 객체를 사용하고 난 후, close() 
+        // 메소드가 호출되게 만든다.
         try (InputStream is = this.getClass().getResourceAsStream(file)) {
             BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             return br.lines().collect(Collectors.joining("\n"));

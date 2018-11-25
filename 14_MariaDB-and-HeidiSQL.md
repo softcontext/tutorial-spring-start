@@ -87,14 +87,11 @@ CREATE TABLE emp (
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 ```
 
-<br/>
-
 ## 2. HeidiSQL 설치
 
-DB에 접속해서 데이터 등을 확인하기 위해서 사용하는 GUI 클라이언트 프로그램이다. 대체 프로그램으로 `Toad For MySQL`, `MySQL Workbench` 등이 있다. 
+DB에 접속해서 데이터 등을 확인하기 위해서 사용하는 GUI 클라이언트 프로그램이다. 대체 프로그램으로 `Toad For MySQL`, `MySQL Workbench` 등이 있다. 또는 콘솔로 접근하여 명령어 기반으로 사용하는 `MySQL Client`를 사용할 수도 있다.
 
-또는 콘솔로 접근하여 명령어 기반으로 사용하는 `MySQL Client`를 사용할 수도 있다.
-mysql -u root -p –port=3306명령어를 실행하고 패스워드를 입력하면 아래와 같이 마리아데이터베이스에 접속할 수 있다
+`mysql -u root -p –port=3306`명령어를 실행하고 패스워드를 입력하면 아래와 같이 마리아데이터베이스에 접속할 수 있다.
 
 ```sql
 show database
@@ -108,7 +105,7 @@ show database
 
 ## 3. 테스트 용 테이블 생성
 
-다음 쿼리는 MySQL, MariaDB에서 사용할 수 있다. 연습을 위한 테스트 용도의 테이블 및 데이터이다.
+다음 쿼리는 MySQL, MariaDB에서 사용할 수 있다. 연습을 위한 테스트 용도의 테이블 및 데이터이다. 쿼리 연습, 디비 연동기술 연습 등에 다양한 용도로 사용하기 바란다.
 
 #### schema.sql
 
@@ -208,20 +205,28 @@ VALUES(7876,'ADAMS','CLERK', 7788,STR_TO_DATE('13-07-1987', '%d-%m-
 
 #### Quiz
 
-테스트를 할 겸 다음에 해당하는 데이터를 구해보자.
+설치된 디비의 정상작동 확인 및 조인 쿼리 학습을 위해서 다음에 해당하는 데이터를 구해보자.
 
 * CHICAGO에 근무하는 직원정보를 구한다.
 
+> Divide and Conquer: 문제가 복잡하면 분할해서 해답을 구한다.
+
 ```
-# 힌트: Divide and Conquer: 문제가 복잡하면 분할해서 해답을 구한다.
-# 1 단계: CHICAGO에 있는 부서는 무엇인가?
-select deptno from DEPT where loc='CHICAGO';
-# 결과: 30
+# 1 단계: CHICAGO에 위치한 부서정보는 어느 테이블에 있는가?
+select * from DEPT;
 
-select * from EMP where deptno=30;
-# 결과: 6건의 로우
+# 2 단계: 직원정보는 어느 테이블에 있는가?
+select * from EMP;
 
-# 2 단계: 위 2개의 쿼리를 묶어서 사용하는 Join 쿼리를 작성한다.
+# 3 단계: 두 테이블의 연결고리 칼럼은 무엇인가?
+일반적으로 한 테이블에서는 PK이면서 다른 테이블에서는 FK인 칼럼을 찾아 본다.
+deptno
+
+# 4 단계: 연속적인 질의문을 통해 원하는 데이터를 구할 수 있는가?
+select deptno as X from DEPT where loc='CHICAGO';
+select * from EMP where deptno=X;
+
+# 5 단계: 두 개의 질의를 하나의 질의(Join 쿼리)로 바꿀 수 있는가?
 select * from EMP where deptno=(
 	select deptno from DEPT where loc='CHICAGO'
 );

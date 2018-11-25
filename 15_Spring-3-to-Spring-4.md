@@ -1,3 +1,4 @@
+
 ***
 
 # 부록 D. 스프링 3에서 4로 마이그레이션 하기
@@ -202,7 +203,7 @@ public UrlBasedViewResolver viewResolver() {
 
 위 설정 대신 아래 애노테이션을 사용한다.
 
-@EnableWebMvc
+`@EnableWebMvc`
 
 <br/>
 
@@ -331,11 +332,13 @@ XML 방식의 설정에서는 root-context.xml에 의한 컨텍스트는 부모 
 
 `webapp\WEB-INF\web.xml` 파일을 삭제한다.
 
+<br/>
+
 ## TEST
 
 프로젝트를 재 기동하여 테스트 해 보자. 스프링 부트는 XML을 기본적으로 사용하지 않지만 개발자가 원한다면 `@ImportResource({"classpath*:context.xml"})` 애노테이션으로 사용할 수 있다.
 
-**`classpath vs classpath* 차이점`**
-
-* classpath : 현재 프로젝트의 resource만 선택 한다.
-* classpath* : 현재 프로젝트에 관련(참조)된 모든 jar를 다 검색하여 리소스를 선택 한다.
+```
+classpath : 현재 프로젝트의 resource만 선택 한다.
+classpath* : 현재 프로젝트에 관련(참조)된 모든 jar를 검색하여 리소스를 선택 한다.
+```

@@ -57,14 +57,14 @@ getLogger() 메소드에 String 대신 .class로 클래스 정보를 넘겨주�
 
 설정파일을 다음 순서대로 찾아서 발견하면 적용됩니다.
 
-1. logback.groovy 파일을 찾는다.
-2. logback-test.xml 파일을 찾는다.
-3. logback.xml 파일을 찾는다.
+1. `logback.groovy` 파일을 찾는다.
+2. `logback-test.xml` 파일을 찾는다.
+3. `logback.xml` 파일을 찾는다.
 4. 모두 없다면 기본 설정 전략을 따른다.
 
-메이븐 프로젝트를 사용하는 경우에는 test/resources에 logback-test.xml을 두고 테스트가 실행될때는 logback-test.xml이 우선적으로 적용되도록 사용할 수 있습니다. 
+메이븐 프로젝트를 사용하는 경우에는 test/resources에 `logback-test.xml`을 두고 테스트가 실행될때는 `logback-test.xml`이 우선적으로 적용되도록 사용할 수 있습니다. 
 
-스프링 부트 환경에서는 logback.xml 이름 대신 logback-spring.xml 이라는 이름으로 설정해야 합니다. logback.xml로 설정하면 스프링부트가 설정하기 전에 로그백 관련한 설정을 하기 때문에 제어할 수가 없게 됩니다.
+스프링 부트 환경에서는 `logback.xml` 이름 대신 `logback-spring.xml` 이라는 이름으로 설정해야 합니다. `logback.xml`로 설정하면 스프링부트가 설정하기 전에 로그백 관련한 설정을 하기 때문에 제어할 수가 없게 됩니다.
 
 ## Appender
 
@@ -273,9 +273,7 @@ resources 폴더 밑에 파일을 배치합니다.
 스프링 개발자가 미리 정의한 설정정보를 상속받아서 적용할 수 있습니다. `<include resource="org/springframework/boot/logging/logback/base.xml"/>` 형태로 설정합니다.
 
 [base.xml](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/base.xml)
-
 [defaults.xml](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/defaults.xml)
-
 [console-appender.xml](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/console-appender.xml)
 
 #### log4jdbc.log4j2.properties
